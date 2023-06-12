@@ -17,6 +17,10 @@ public class MainDemoApp {
         // call the business method
         accountDAO.addAccount();
 
+        // lats call it again
+        System.out.println("\n lets call it again \n");
+        accountDAO.addAccount();
+
         // close the context
         context.close();
     }
