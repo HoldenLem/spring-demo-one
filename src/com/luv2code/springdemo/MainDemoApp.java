@@ -14,12 +14,13 @@ public class MainDemoApp {
         // get the been from config class
         AccountDAO accountDAO = context.getBean("accountDAO", AccountDAO.class);
 
+        MembershipDAO2 membershipDAO2 = context.getBean("membershipDAO2",MembershipDAO2.class);
         // call the business method
         accountDAO.addAccount();
 
         // lats call it again
         System.out.println("\n lets call it again \n");
-        accountDAO.addAccount();
+        membershipDAO2.addAccount();
 
         // close the context
         context.close();
