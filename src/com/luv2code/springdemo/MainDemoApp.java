@@ -8,20 +8,32 @@ public class MainDemoApp {
 
     public static void main(String[] args) {
 
-        // read spring config class
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(DemoConfig.class);
+        // read spring config java class
+        AnnotationConfigApplicationContext context =
+                new AnnotationConfigApplicationContext(DemoConfig.class);
 
-        // get the been from config class
-        AccountDAO accountDAO = context.getBean("accountDAO", AccountDAO.class);
+        // get the bean from spring container
+        AccountDAO theAccountDAO = context.getBean("accountDAO", AccountDAO.class);
 
-        MembershipDAO2 membershipDAO2 = context.getBean("membershipDAO2",MembershipDAO2.class);
+        // get membership bean from spring container
+        MembershipDAO2 theMembershipDAO =
+                context.getBean("membershipDAO2", MembershipDAO2.class);
+
         // call the business method
-        Account account = new Account();
-        accountDAO.addAccount(account,true);
+        Account myAccount = new Account();
+        theAccountDAO.addAccount(myAccount, true);
+        theAccountDAO.doWork();
 
-        // lats call it again
-        System.out.println("\n lets call it again \n");
-        membershipDAO2.addAccount();
+        // call the accountdao getter/setter methods
+        theAccountDAO.setName("foobar");
+        theAccountDAO.setLevel("silver");
+
+        String name = theAccountDAO.getName();
+        String code = theAccountDAO.getLevel();
+
+        // call the membership business method
+        theMembershipDAO.addSillyMember();
+        theMembershipDAO.goToSleep();
 
         // close the context
         context.close();
