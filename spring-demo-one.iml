@@ -8,5 +8,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="libs" level="project" />
+    <orderEntry type="library" name="aspectjweaver-1.8.13" level="project" />
   </component>
 </module>
