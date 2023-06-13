@@ -2,6 +2,9 @@ package com.luv2code.springdemo;
 
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 public class AccountDAO {
 
@@ -37,5 +40,22 @@ public class AccountDAO {
     public void addAccount(Account account, boolean vipFlag) {
 
         System.out.println(getClass() + " DOING MY DB WORK: ADD ACCOUNT" );
+    }
+
+    public List<Account> findAccount() {
+
+        List<Account> accounts = new ArrayList<>();
+
+        // create accounts
+        Account one = new Account("John","Silver");
+        Account two = new Account("Madhu","Platinum");
+        Account three = new Account("Luca","Gold");
+
+        // add accounts to rhe list
+        accounts.add(one);
+        accounts.add(two);
+        accounts.add(three);
+
+        return accounts;
     }
 }
