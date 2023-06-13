@@ -24,7 +24,7 @@ public class BeforeAddAccountAdvice {
             returning = "result"
     )
     public void afterReturningFindAccountAdvice(
-            JoinPoint joinPoint, List<Account> result){
+            JoinPoint joinPoint, List<Account> result) {
 
         // print the method
         String method = joinPoint.getSignature().toShortString();
@@ -33,6 +33,23 @@ public class BeforeAddAccountAdvice {
         //printout the returning result
         System.out.println("\n====> result is " + result);
 
+        // post-process the data
+
+        // convert account name to Uppercase
+        convertAccountNameToUpperCase(result);
+
+        System.out.println("\n====> result is " + result);
+
+
+    }
+
+    private void convertAccountNameToUpperCase(List<Account> result) {
+
+        for (Account account : result) {
+            String theUpperCase = account.getName().toUpperCase();
+
+            account.setName(theUpperCase);
+        }
 
     }
 
@@ -41,14 +58,14 @@ public class BeforeAddAccountAdvice {
     public void beforeAddAccountAdvice(JoinPoint joinPoint) {
 
         // display method signature
-        MethodSignature methodSignature =(MethodSignature) joinPoint.getSignature();
+        MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
         System.out.println("\n=========>>>> Method: " + methodSignature);
 
         //display methods args
 
         Object[] args = joinPoint.getArgs();
 
-        for(Object tempArgs: args){
+        for (Object tempArgs : args) {
             System.out.println(tempArgs);
         }
     }
