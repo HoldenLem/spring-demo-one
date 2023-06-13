@@ -58,4 +58,12 @@ public class AccountDAO {
 
         return accounts;
     }
+
+    @Override
+    public String toString() {
+        return "AccountDAO{" +
+                "name='" + name + '\'' +
+                ", level='" + level + '\'' +
+                '}';
+    }
 }

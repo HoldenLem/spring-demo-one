@@ -4,6 +4,8 @@ import com.luv2code.springdemo.AccountDAO;
 import com.luv2code.springdemo.DemoConfig;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import java.util.List;
+
 public class MainDemoApp {
 
     public static void main(String[] args) {
@@ -15,25 +17,13 @@ public class MainDemoApp {
         // get the bean from spring container
         AccountDAO theAccountDAO = context.getBean("accountDAO", AccountDAO.class);
 
-        // get membership bean from spring container
-        MembershipDAO2 theMembershipDAO =
-                context.getBean("membershipDAO2", MembershipDAO2.class);
+        // call method to find the accounts
+        List<Account> account = theAccountDAO.findAccount();
 
-        // call the business method
-        Account myAccount = new Account();
-        theAccountDAO.addAccount(myAccount, true);
-        theAccountDAO.doWork();
-
-        // call the accountdao getter/setter methods
-        theAccountDAO.setName("foobar");
-        theAccountDAO.setLevel("silver");
-
-        String name = theAccountDAO.getName();
-        String code = theAccountDAO.getLevel();
-
-        // call the membership business method
-        theMembershipDAO.addSillyMember();
-        theMembershipDAO.goToSleep();
+        //display the accounts
+        System.out.println("\n\nMain program");
+        System.out.println(account);
+        System.out.println("\n");
 
         // close the context
         context.close();
