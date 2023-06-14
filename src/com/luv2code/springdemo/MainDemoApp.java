@@ -2,6 +2,7 @@ package com.luv2code.springdemo;
 
 import com.luv2code.springdemo.AccountDAO;
 import com.luv2code.springdemo.DemoConfig;
+import com.luv2code.springdemo.service.TrafficFortuneService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.util.List;
@@ -15,23 +16,15 @@ public class MainDemoApp {
                 new AnnotationConfigApplicationContext(DemoConfig.class);
 
         // get the bean from spring container
-        AccountDAO theAccountDAO = context.getBean("accountDAO", AccountDAO.class);
+        TrafficFortuneService trafficFortuneService = context.getBean("trafficFortuneService", TrafficFortuneService.class);
 
-        // call method to find the accounts
-        List<Account> account = null;
+        // call the service
+        System.out.println("\n Main program");
+        System.out.println("Calling the service");
 
-        try {
-            // simulate exception
-            boolean trip = true;
-            account = theAccountDAO.findAccount(trip);
-        } catch (Exception e) {
-            System.out.println("\n\nMain program caught exception: " + e);
-        }
+        String data = trafficFortuneService.getFortune();
 
-        //display the accounts
-        System.out.println("\n\nMain program");
-        System.out.println(account);
-        System.out.println("\n");
+        System.out.println("\n My fortune is: " + data);
 
         // close the context
         context.close();
