@@ -2,10 +2,7 @@ package com.luv2code.springdemo.aspect;
 
 import com.luv2code.springdemo.Account;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.AfterReturning;
-import org.aspectj.lang.annotation.AfterThrowing;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
@@ -18,9 +15,19 @@ import java.util.List;
 @Order(3)
 public class BeforeAddAccountAdvice {
 
-
     // add a new advice for @AfterThrowing on findAccount
 
+    @After("execution(* com.luv2code.springdemo.AccountDAO.findAccount(..))")
+    public void afterFindAccountAdvice(JoinPoint joinPoint){
+
+        String method = joinPoint.getSignature().toShortString();
+        System.out.println("\n====> Executing @After (finally) on method " + method);
+
+
+    }
+
+
+    // add a new advice for @AfterThrowing on findAccount
     @AfterThrowing(
             pointcut = "execution(* com.luv2code.springdemo.AccountDAO.findAccount(..))",
             throwing = "theExc"
