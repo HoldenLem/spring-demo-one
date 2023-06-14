@@ -21,7 +21,9 @@ public class MainDemoApp {
         List<Account> account = null;
 
         try {
-            account = theAccountDAO.findAccount();
+            // simulate exception
+            boolean trip = true;
+            account = theAccountDAO.findAccount(trip);
         } catch (Exception e) {
             System.out.println("\n\nMain program caught exception: " + e);
         }

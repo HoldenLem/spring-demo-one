@@ -42,8 +42,12 @@ public class AccountDAO {
         System.out.println(getClass() + " DOING MY DB WORK: ADD ACCOUNT" );
     }
 
-    public List<Account> findAccount() {
+    public List<Account> findAccount(boolean trip) {
 
+        // simulate exception
+        if(trip){
+            throw  new RuntimeException("No soup for you");
+        }
         List<Account> accounts = new ArrayList<>();
 
         // create accounts
