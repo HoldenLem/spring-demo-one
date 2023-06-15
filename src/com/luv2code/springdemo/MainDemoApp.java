@@ -6,8 +6,12 @@ import com.luv2code.springdemo.service.TrafficFortuneService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 public class MainDemoApp {
+
+
+    private static Logger logger = Logger.getLogger(MainDemoApp.class.getName());
 
     public static void main(String[] args) {
 
@@ -19,12 +23,12 @@ public class MainDemoApp {
         TrafficFortuneService trafficFortuneService = context.getBean("trafficFortuneService", TrafficFortuneService.class);
 
         // call the service
-        System.out.println("\n Main program");
-        System.out.println("Calling the service");
+        logger.info("\n Main program");
+        logger.info("Calling the service");
 
         String data = trafficFortuneService.getFortune();
 
-        System.out.println("\n My fortune is: " + data);
+        logger.info("\n My fortune is: " + data);
 
         // close the context
         context.close();
